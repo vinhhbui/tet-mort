@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hứng Lì Xì</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-screen" class="screen" style="display: flex;">
+        <div style="font-size: 4rem; margin-bottom: 10px;">🧧</div>
+        <h1>Hái Lộc Đầu Xuân</h1>
+        <div class="tutorial">
+            <p>Di chuyển túi 👜 để hứng quà!</p>
+            <p>🧧 +1 điểm | 🌼 +2 điểm | 😢 -2 điểm</p>
+            <p style="color: #ffeb3b; font-weight: bold;">Mục tiêu: 20 điểm</p>
+        </div>
+        <button class="btn-main" onclick="startGame()">Vào Game</button>Niên
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div id="score-board">Điểm: <span id="score">0</span>/20</div>
+        <div id="player">👜</div>
+    </div>
+
+    <div id="win-screen" class="screen">
+        <div class="card">
+            <h2>Cung Hỷ Tân Niên!</h2>
+            <p id="q-text">Wìn ùi, bé Mort Bọt làm Tết của tui nhen? 🌸</p>
+            
+            <div class="btn-group" id="btn-area">
+                <button class="btn-option btn-yes" id="btnYes">Đồng í</button>
+                <button class="btn-option btn-no" id="btnNo">Hong</button>
+            </div>
+
+            <div id="final-msg">
+                <p style="color: #d50000; font-weight: bold; font-size: 1.4rem;">Chốt đơn! Yêu emmm ❤️</p>
+                <img src="https://media.giphy.com/media/l4pTfx2qLszoacZRS/giphy.gif" alt="Happy">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
