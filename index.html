@@ -338,7 +338,7 @@
             if (!isRunning) return;
             const item = document.createElement('div'); item.classList.add('item');
             const rand = Math.random();
-            if (rand < 0.6) { item.innerText = '🧧'; item.dataset.val = 20; } else if (rand < 0.85) { item.innerText = '🌼'; item.dataset.val = 20; } else { item.innerText = '😢'; item.dataset.val = -2; }
+            if (rand < 0.6) { item.innerText = '🧧'; item.dataset.val = 1; } else if (rand < 0.85) { item.innerText = '🌼'; item.dataset.val = 2; } else { item.innerText = '😢'; item.dataset.val = -2; }
             item.style.left = Math.random() * (window.innerWidth - 50) + 'px'; item.style.top = '-60px'; gameScreen.appendChild(item);
             let y = -60; const speed = Math.random() * 3 + 4;
             function fall() {
