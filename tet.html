@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Năm Mới - Gửi Cậu</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="lantern l-left"></div>
+    <div class="lantern l-right"></div>
+
+    <div class="container" id="main-card">
+        <h1>Chúc Mừng Năm Mới</h1>
+        <p class="question">Năm mới đến rồi, làm "Tết" của tui nhen? 🌸</p>
+        
+        <div class="btn-group">
+            <button class="btn-yes" id="btnYes">Đồng í</button>
+            <button class="btn-no" id="btnNo">Hong</button>
+        </div>
+    </div>
+
+    <div class="container" id="success-msg">
+        <h1>Yeahhh! Happy New Year! 🎆</h1>
+        <p style="font-size: 1.2rem;">Hứa rồi đó nhen! Lì xì cho tui đi! ❤️</p>
+        <img src="https://media.giphy.com/media/26tOZ42MgW67wFCDe/giphy.gif" alt="Happy Cat">
+    </div>
+
+    <script>
+        // --- Hiệu ứng hoa mai rơi ---
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            
+            // Random kích thước, vị trí và thời gian rơi
+            const size = Math.random() * 30 + 20 + 'px';
+            flower.style.width = size;
+            flower.style.height = size;
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
+            
+            document.body.appendChild(flower);
+
+            // Xóa hoa sau khi rơi xong để tránh nặng máy
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+        setInterval(createFlower, 300); // Tạo hoa mỗi 300ms
+
+        // --- Logic Nút Bấm ---
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const mainCard = document.getElementById('main-card');
+        const successMsg = document.getElementById('success-msg');
+
+        let currentScale = 1;
+        let clickCount = 0;
+        const JUMP_THRESHOLD = 5; // Sau 3 lần bấm thì nút Hong sẽ bắt đầu nhảy
+
+        // Khi bấm nút "Hong"
+        btnNo.addEventListener('click', function() {
+            clickCount++;
+            
+            // 1. Làm nút "Đồng í" to lên
+            currentScale += 0.2;
+            btnYes.style.transform = `scale(${currentScale})`;
+            
+            // 2. Thay đổi nội dung nút Hong cho vui
+            const texts = ["Hong á?", "Suy nghĩ kỹ chưa?", "Đừng mà...", "Bấm bên kia kìa!", "Thôi mà..."];
+            if (clickCount < texts.length) {
+                btnNo.innerText = texts[clickCount];
+            }
+
+            // 3. Nếu nút Đồng ý đã to đến mức nhất định, nút Hong sẽ bắt đầu nhảy
+            if (clickCount >= JUMP_THRESHOLD) {
+                moveButtonRandomly();
+                // Chuyển sang sự kiện mouseover để không bao giờ bắt được nữa
+                btnNo.addEventListener('mouseover', moveButtonRandomly);
+            }
+        });
+
+        // Hàm làm nút Hong nhảy lung tung
+        function moveButtonRandomly() {
+            // Lấy kích thước màn hình
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            
+            btnNo.style.position = 'fixed'; // Chuyển sang fixed để bay khắp màn hình
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+            btnNo.innerText = "Hong bắt được đâu :p";
+        }
+
+        // Khi bấm nút "Đồng í"
+        btnYes.addEventListener('click', function() {
+            mainCard.style.display = 'none'; // Ẩn câu hỏi
+            successMsg.style.display = 'block'; // Hiện lời chúc mừng
+            
+            // Bắn thêm nhiều hoa mai
+            for(let i=0; i<50; i++) {
+                setTimeout(createFlower, i*50);
+            }
+        });
+
+    </script>
+</body>
+</html>
